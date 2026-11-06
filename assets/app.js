@@ -7,7 +7,8 @@
     const term = search.value.trim().toLocaleLowerCase();
     let count = 0;
     cards.forEach(card => {
-      const match = (category === '全部' || card.dataset.group === category) && card.textContent.toLocaleLowerCase().includes(term);
+      const searchable = `${card.querySelector('h3').textContent} ${card.querySelector('p').textContent}`;
+      const match = (category === '全部' || card.dataset.group === category) && searchable.toLocaleLowerCase().includes(term);
       card.hidden = !match; count += Number(match);
     });
     document.querySelector('#count').textContent = `${count} 篇筆記`;
